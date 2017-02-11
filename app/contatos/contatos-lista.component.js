@@ -15,7 +15,13 @@ var ContatosListaComponent = (function () {
         this.contattoService = contattoService;
     }
     ContatosListaComponent.prototype.ngOnInit = function () {
-        this.contattoService.getContatos();
+        var _this = this;
+        this.contattoService.getContatos()
+            .then(function (contatos) {
+            _this.contatos = contatos;
+        }).catch(function (err) {
+            console.log('Aconteceu um erro: ', err);
+        });
     };
     return ContatosListaComponent;
 }());
